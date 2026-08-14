@@ -1132,6 +1132,7 @@
 
         let keyboardAirX = 0;
         let keyboardAirY = 0;
+        let airPulseTimer = null;
 
         let particleMotionFrozen = false;
         let volumeLimitKey = null;
@@ -1146,6 +1147,14 @@
 
         function setKeyboardAirX(direction) {
             keyboardAirX = direction * 5.5;
+        }
+
+        function triggerAirPulse(direction, duration = 300) {
+            setKeyboardAirX(direction);
+            clearTimeout(airPulseTimer);
+            airPulseTimer = setTimeout(() => {
+                releaseKeyboardAirX();
+            }, duration);
         }
 
         function setKeyboardAirY(direction) {
@@ -1575,11 +1584,13 @@
 
         function nextTrack() {
             playRadioGlitch();
+            triggerAirPulse(1);
             if (isPlayerReady) player.nextVideo();
         }
 
         function prevTrack() {
             playRadioGlitch();
+            triggerAirPulse(-1);
             if (isPlayerReady) player.previousVideo();
         }
 
