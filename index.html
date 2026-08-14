@@ -6,23 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
-<title>আগমনী — Durga Puja Playlist & Countdown | Nostalgic Mahalaya</title>
-<meta name="description" content="Listen to classic Durga Puja, Mahalaya, and Agomoni songs with nostalgic dhak sound effects, live countdown, and interactive visuals. The ultimate Durga Puja wala playlist website.">
-<meta name="keywords" content="durga puja wala playlist website, durga puja playlist, playlist website, mahalaya playlist, agomoni songs, kolkata durga puja countdown, dhak sound website">
-<meta name="robots" content="index, follow">
+    <title>আগমনী — Durga Puja Playlist & Countdown | Nostalgic Mahalaya</title>
+    <meta name="description"
+        content="Listen to classic Durga Puja, Mahalaya, and Agomoni songs with nostalgic dhak sound effects, live countdown, and interactive visuals. The ultimate Durga Puja wala playlist website.">
+    <meta name="keywords"
+        content="durga puja wala playlist website, durga puja playlist, playlist website, mahalaya playlist, agomoni songs, kolkata durga puja countdown, dhak sound website">
+    <meta name="robots" content="index, follow">
 
-<!-- Open Graph / Social Media Sharing -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="আগমনী — Nostalgic Durga Puja Playlist">
-<meta property="og:description" content="Interactive Durga Puja audio player with dhak beats, countdown, and nostalgic Mahalaya tracks.">
-<meta property="og:image" content="https://i.ibb.co/SDMHq0dX/file.png">
+    <!-- Open Graph / Social Media Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="আগমনী — Nostalgic Durga Puja Playlist">
+    <meta property="og:description"
+        content="Interactive Durga Puja audio player with dhak beats, countdown, and nostalgic Mahalaya tracks.">
+    <meta property="og:image" content="https://i.ibb.co/SDMHq0dX/file.png">
 
     <!-- Standard PNG favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="https://i.ibb.co/DHxgH04N/6d32faff-d186-4fe4-a3ae-c13418dd6fd9.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="https://i.ibb.co/DHxgH04N/6d32faff-d186-4fe4-a3ae-c13418dd6fd9.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="https://i.ibb.co/DHxgH04N/6d32faff-d186-4fe4-a3ae-c13418dd6fd9.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="https://i.ibb.co/DHxgH04N/6d32faff-d186-4fe4-a3ae-c13418dd6fd9.png">
 
-  <!-- Apple iOS home screen icon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="https://i.ibb.co/DHxgH04N/6d32faff-d186-4fe4-a3ae-c13418dd6fd9.png">
+    <!-- Apple iOS home screen icon -->
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="https://i.ibb.co/DHxgH04N/6d32faff-d186-4fe4-a3ae-c13418dd6fd9.png">
     <title>আগমনী — Nostalgic Durga Puja</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,6 +53,9 @@
         }
 
         * {
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            /* Removes blue highlight on mobile touch */
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -270,7 +279,9 @@
         }
 
         @keyframes pujaNumberGlow {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1);
                 text-shadow:
                     0 0 5px rgba(255, 216, 77, 0.9),
@@ -278,6 +289,7 @@
                     0 0 38px rgba(241, 196, 15, 0.25),
                     0 4px 14px rgba(0, 0, 0, 0.8);
             }
+
             50% {
                 transform: scale(1.035);
                 text-shadow:
@@ -289,8 +301,17 @@
         }
 
         @keyframes pujaLinePulse {
-            0%, 100% { transform: scaleX(0.82); opacity: 0.75; }
-            50% { transform: scaleX(1); opacity: 1; }
+
+            0%,
+            100% {
+                transform: scaleX(0.82);
+                opacity: 0.75;
+            }
+
+            50% {
+                transform: scaleX(1);
+                opacity: 1;
+            }
         }
 
         @media (max-width: 768px) {
@@ -453,7 +474,7 @@
             transform: translateX(-50%);
             font-size: 0.55rem;
             letter-spacing: 0.8px;
-            color: rgba(255,255,255,0.28);
+            color: rgba(255, 255, 255, 0.28);
             white-space: nowrap;
             pointer-events: none;
             opacity: 0;
@@ -506,7 +527,7 @@
             margin-top: 4px;
             overflow-y: auto;
             scrollbar-width: thin;
-            scrollbar-color: rgba(255,255,255,0.25) transparent;
+            scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
         }
 
         .playlist-list {
@@ -568,13 +589,13 @@
             display: block;
             margin-top: 2px;
             font-size: 0.62rem;
-            color: rgba(255,255,255,0.45);
+            color: rgba(255, 255, 255, 0.45);
         }
 
         .playlist-loading {
             padding: 10px;
             text-align: center;
-            color: rgba(255,255,255,0.45);
+            color: rgba(255, 255, 255, 0.45);
             font-size: 0.7rem;
         }
 
@@ -686,13 +707,11 @@
             z-index: 4;
             pointer-events: none;
             opacity: 0;
-            background: radial-gradient(
-                circle at center,
-                rgba(255, 214, 80, 0.30) 0%,
-                rgba(255, 190, 45, 0.14) 35%,
-                rgba(255, 165, 0, 0.05) 65%,
-                rgba(255, 140, 0, 0) 100%
-            );
+            background: radial-gradient(circle at center,
+                    rgba(255, 214, 80, 0.30) 0%,
+                    rgba(255, 190, 45, 0.14) 35%,
+                    rgba(255, 165, 0, 0.05) 65%,
+                    rgba(255, 140, 0, 0) 100%);
         }
 
         .keyboard-warm-flash.active {
@@ -700,9 +719,17 @@
         }
 
         @keyframes warmKeyFlash {
-            0% { opacity: 0; }
-            25% { opacity: 1; }
-            100% { opacity: 0; }
+            0% {
+                opacity: 0;
+            }
+
+            25% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
         }
 
         #interactive-canvas {
@@ -727,27 +754,48 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(10px) rotate(0deg); }
-            50% { transform: translateY(-5px) rotate(0.5deg); }
+
+            0%,
+            100% {
+                transform: translateY(10px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-5px) rotate(0.5deg);
+            }
         }
 
         @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 0.8; }
+
+            0%,
+            100% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
         }
 
         @media (max-width: 768px) {
             .app-container {
                 padding: 1.5rem 1rem;
             }
+
             .hero-title {
                 margin-top: 2vh;
             }
+
             .glass-player {
                 padding: 1rem 1.25rem;
             }
@@ -812,7 +860,8 @@
                         <div class="track-album" id="track-status">Connecting to YouTube...</div>
                         <span class="desktop-swipe-hint">← drag / swipe →</span>
                     </div>
-                    <button class="playlist-toggle" id="playlist-toggle" title="Show playlist" aria-label="Show playlist" aria-expanded="false">
+                    <button class="playlist-toggle" id="playlist-toggle" title="Show playlist"
+                        aria-label="Show playlist" aria-expanded="false">
                         <i data-feather="chevron-down"></i>
                     </button>
                 </div>
@@ -833,7 +882,8 @@
                     <span class="time-display" id="time-current">0:00</span>
                     <div class="control-buttons">
                         <button class="btn" id="btn-prev" title="Previous"><i data-feather="skip-back"></i></button>
-                        <button class="btn btn-play" id="btn-play-pause" title="Play"><i data-feather="play"></i></button>
+                        <button class="btn btn-play" id="btn-play-pause" title="Play"><i
+                                data-feather="play"></i></button>
                         <button class="btn" id="btn-next" title="Next"><i data-feather="skip-forward"></i></button>
                     </div>
                     <span class="time-display total" id="time-total">0:00</span>
@@ -1760,7 +1810,7 @@
             audio.currentTime = 0;
             const promise = audio.play();
             if (promise && typeof promise.catch === 'function') {
-                promise.catch(() => {});
+                promise.catch(() => { });
             }
         }
 
@@ -1787,8 +1837,8 @@
             const isTyping =
                 target &&
                 (target.tagName === 'INPUT' ||
-                 target.tagName === 'TEXTAREA' ||
-                 target.isContentEditable);
+                    target.tagName === 'TEXTAREA' ||
+                    target.isContentEditable);
 
             if (isTyping) return;
 
