@@ -56,7 +56,6 @@
         * {
             outline: none;
             -webkit-tap-highlight-color: transparent;
-            /* Removes blue highlight on mobile touch */
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -280,9 +279,7 @@
         }
 
         @keyframes pujaNumberGlow {
-
-            0%,
-            100% {
+            0%, 100% {
                 transform: scale(1);
                 text-shadow:
                     0 0 5px rgba(255, 216, 77, 0.9),
@@ -290,7 +287,6 @@
                     0 0 38px rgba(241, 196, 15, 0.25),
                     0 4px 14px rgba(0, 0, 0, 0.8);
             }
-
             50% {
                 transform: scale(1.035);
                 text-shadow:
@@ -302,43 +298,79 @@
         }
 
         @keyframes pujaLinePulse {
-
-            0%,
-            100% {
+            0%, 100% {
                 transform: scaleX(0.82);
                 opacity: 0.75;
             }
-
             50% {
                 transform: scaleX(1);
                 opacity: 1;
             }
         }
 
+        /* Mobile Responsive Viewport Fix */
         @media (max-width: 768px) {
-            .puja-countdown {
-                position: absolute;
-                left: 1rem;
-                top: auto;
-                bottom: 7.5rem;
-                transform: none;
-                width: auto;
+            .app-container {
+                padding: 1.25rem 1rem;
+                overflow-y: auto;
             }
 
-            .puja-countdown-number {
-                font-size: 3rem;
+            .hero-center {
+                margin-top: 0;
+                gap: 0.5rem;
+                pointer-events: auto;
+            }
+
+            .hero-title {
+                font-size: clamp(3.2rem, 14vw, 4.5rem);
+                margin-top: 0;
+            }
+
+            .puja-countdown {
+                position: relative;
+                left: auto;
+                top: auto;
+                bottom: auto;
+                transform: none;
+                width: 100%;
+                margin: 0.75rem 0;
+                text-align: center;
+                z-index: 10;
+            }
+
+            .puja-countdown-main {
+                justify-content: center;
             }
 
             .puja-countdown-label {
-                font-size: 0.92rem;
+                font-size: 0.95rem;
+                margin-bottom: 0.35rem;
             }
 
             .puja-countdown-number {
-                font-size: 2.65rem;
+                font-size: 2.8rem;
+            }
+
+            .puja-countdown-number::after {
+                margin: 0.38rem auto 0 auto;
+                transform-origin: center;
             }
 
             .puja-countdown-days {
-                font-size: 1.05rem;
+                font-size: 1.1rem;
+            }
+
+            .quotes-container {
+                margin-top: 0.5rem;
+                min-height: 40px;
+            }
+
+            .glass-player {
+                padding: 1rem 1.25rem;
+            }
+
+            .playlist-panel.open {
+                max-height: 200px;
             }
         }
 
@@ -755,12 +787,9 @@
         }
 
         @keyframes float {
-
-            0%,
-            100% {
+            0%, 100% {
                 transform: translateY(10px) rotate(0deg);
             }
-
             50% {
                 transform: translateY(-5px) rotate(0.5deg);
             }
@@ -770,39 +799,17 @@
             from {
                 transform: rotate(0deg);
             }
-
             to {
                 transform: rotate(360deg);
             }
         }
 
         @keyframes pulse {
-
-            0%,
-            100% {
+            0%, 100% {
                 opacity: 0.4;
             }
-
             50% {
                 opacity: 0.8;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .app-container {
-                padding: 1.5rem 1rem;
-            }
-
-            .hero-title {
-                margin-top: 2vh;
-            }
-
-            .glass-player {
-                padding: 1rem 1.25rem;
-            }
-
-            .playlist-panel.open {
-                max-height: 220px;
             }
         }
     </style>
@@ -1313,8 +1320,7 @@
 
             const approximateTime = dayOfYear + ((6 - lngHour) / 24);
 
-            const sunMeanAnomaly =
-                (0.9856 * approximateTime) - 3.289;
+            const sunMeanAnomaly = (0.9856 * approximateTime) - 3.289;
 
             let sunTrueLongitude =
                 sunMeanAnomaly +
@@ -1328,26 +1334,21 @@
                 deg * Math.atan(0.91764 * Math.tan(sunTrueLongitude * rad));
             rightAscension = ((rightAscension % 360) + 360) % 360;
 
-            const lQuadrant =
-                Math.floor(sunTrueLongitude / 90) * 90;
-            const raQuadrant =
-                Math.floor(rightAscension / 90) * 90;
+            const lQuadrant = Math.floor(sunTrueLongitude / 90) * 90;
+            const raQuadrant = Math.floor(rightAscension / 90) * 90;
 
             rightAscension += lQuadrant - raQuadrant;
             rightAscension /= 15;
 
-            const sinDeclination =
-                0.39782 * Math.sin(sunTrueLongitude * rad);
-            const cosDeclination =
-                Math.cos(Math.asin(sinDeclination));
+            const sinDeclination = 0.39782 * Math.sin(sunTrueLongitude * rad);
+            const cosDeclination = Math.cos(Math.asin(sinDeclination));
 
             const cosHourAngle =
                 (Math.cos(zenith * rad) -
                     (sinDeclination * Math.sin(latitude * rad))) /
                 (cosDeclination * Math.cos(latitude * rad));
 
-            if (cosHourAngle > 1) return null;
-            if (cosHourAngle < -1) return null;
+            if (cosHourAngle > 1 || cosHourAngle < -1) return null;
 
             const hourAngle = 360 - deg * Math.acos(cosHourAngle);
             const localHourAngle = hourAngle / 15;
